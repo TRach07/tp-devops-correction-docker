@@ -24,7 +24,7 @@ jobs:
         run: mvn clean verify --file ./simple-api/pom.xml
 
   build-and-push-docker-image:
-    needs: test-backend   # <- on lance ce job seulement si les tests passent
+    needs: test-backend   # ce job ne s’exécute que si les tests passent
     runs-on: ubuntu-22.04
 
     steps:
@@ -37,22 +37,20 @@ jobs:
       - name: Build and push backend image
         uses: docker/build-push-action@v6
         with:
-          context: ./simple-api  
+          context: ./simple-api
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops-simple-api:latest
-          push: ${{ github.ref == 'refs/heads/main' }}  
+          push: ${{ github.ref == 'refs/heads/main' }}
 
-      
       - name: Build and push database image
         uses: docker/build-push-action@v6
         with:
-          context: ./simple-api-db  
+          context: ./database
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops-simple-db:latest
           push: ${{ github.ref == 'refs/heads/main' }}
 
-      
       - name: Build and push httpd image
         uses: docker/build-push-action@v6
         with:
-          context: ./simple-api-httpd  
+          context: ./http-server
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops-simple-httpd:latest
           push: ${{ github.ref == 'refs/heads/main' }}
