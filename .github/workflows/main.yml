@@ -23,8 +23,18 @@ jobs:
       - name: Build and test with Maven
         run: mvn clean verify --file ./simple-api/pom.xml
 
+      - name: SonarCloud Scan
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: mvn -B verify sonar:sonar \
+          -Dsonar.projectKey=trach07 \
+          -Dsonar.organization=Taha RACHID \
+          -Dsonar.host.url=https://sonarcloud.io \
+          -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
+          --file ./simple-api/pom.xml
+
   build-and-push-docker-image:
-    needs: test-backend   # ce job ne s’exécute que si les tests passent
+    needs: test-backend
     runs-on: ubuntu-22.04
 
     steps:
