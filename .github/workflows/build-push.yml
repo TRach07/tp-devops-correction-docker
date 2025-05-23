@@ -10,7 +10,6 @@ on:
 jobs:
   build-and-push-docker-image:
     runs-on: ubuntu-22.04
-    # Only run if the test workflow succeeded
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: Checkout code
@@ -23,19 +22,25 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: ./simple-api
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops-simple-api:latest
-          push: ${{ github.ref == 'refs/heads/main' }}
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops-simple-api:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops-simple-api:${{ github.event.workflow_run.head_sha }}
+          push: ${{ github.event.workflow_run.head_branch == 'main' }}
 
       - name: Build and push database image
         uses: docker/build-push-action@v6
         with:
           context: ./database
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops-simple-db:latest
-          push: ${{ github.ref == 'refs/heads/main' }}
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops-simple-db:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops-simple-db:${{ github.event.workflow_run.head_sha }}
+          push: ${{ github.event.workflow_run.head_branch == 'main' }}
 
       - name: Build and push httpd image
         uses: docker/build-push-action@v6
         with:
           context: ./http-server
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops-simple-httpd:latest
-          push: ${{ github.ref == 'refs/heads/main' }}
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops-simple-httpd:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops-simple-httpd:${{ github.event.workflow_run.head_sha }}
+          push: ${{ github.event.workflow_run.head_branch == 'main' }}
