@@ -31,7 +31,7 @@ jobs:
         run: |
           mvn -B verify sonar:sonar \
             -Dsonar.projectKey=TRach07_tp-devops-correction-docker \
-            -Dsonar.organization="Taha RACHID" \
+            -Dsonar.organization=trach07 \
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.login=${{ secrets.SONAR_TOKEN }}
 
