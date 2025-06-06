@@ -1,17 +1,7 @@
-<<<<<<< HEAD
----
 - hosts: all
   become: true
   gather_facts: true
 
   roles:
     - docker
-=======
----
-- hosts: all
-  become: true
-  gather_facts: true
 
-  roles:
-    - docker
->>>>>>> 5ff6c39 (test ansible commit)
