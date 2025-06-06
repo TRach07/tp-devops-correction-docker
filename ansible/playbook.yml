@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 - hosts: all
   gather_facts: false
   become: true
@@ -5,3 +6,12 @@
   tasks:
    - name: Test connection
      ping:
+=======
+- hosts: all
+  gather_facts: false
+  become: true
+
+  tasks:
+   - name: Test connection
+     ping:
+>>>>>>> 5ff6c39 (test ansible commit)

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 all:
   vars:
     ansible_user: admin
@@ -6,3 +7,13 @@ all:
     prod:
       hosts:
         taha.rachid.takima.cloud:
+=======
+all:
+  vars:
+    ansible_user: admin
+    ansible_ssh_private_key_file: /home/taha1/.ssh/id_rsa
+  children:
+    prod:
+      hosts:
+        taha.rachid.takima.cloud:
+>>>>>>> 5ff6c39 (test ansible commit)

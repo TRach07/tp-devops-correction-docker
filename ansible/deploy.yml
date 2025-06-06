@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 - hosts: all
   become: true
   gather_facts: true
@@ -10,3 +11,17 @@
     - launch_db
     - launch_app
     - launch_proxy
+=======
+- hosts: all
+  become: true
+  gather_facts: true
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+
+  roles:
+    - install_docker
+    - create_network
+    - launch_db
+    - launch_app
+    - launch_proxy
+>>>>>>> 5ff6c39 (test ansible commit)
