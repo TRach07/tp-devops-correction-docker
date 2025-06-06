@@ -33,6 +33,12 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
+      - name: Add remote host to known_hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan taha.rachid.takima.cloud >> ~/.ssh/known_hosts
+
+
       - name: Run Ansible playbook to deploy
         run: |
           ansible-playbook -i ansible/inventories/setup.yml ansible/deploy.yml -u admin
