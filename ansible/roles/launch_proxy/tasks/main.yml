@@ -2,6 +2,7 @@
   community.docker.docker_container:
     name: httpd
     image: taharachid/tp-devops-simple-httpd
+    pull: true
     ports:
       - "80:80"
     networks:

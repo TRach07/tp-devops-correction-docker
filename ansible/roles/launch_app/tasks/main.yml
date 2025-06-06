@@ -2,6 +2,7 @@
   community.docker.docker_container:
     name: simple-api
     image: taharachid/tp-devops-simple-api
+    pull: true
     env:
       SPRING_DATASOURCE_URL: "{{ spring_datasource_url }}"
       SPRING_DATASOURCE_USERNAME: "{{ spring_datasource_username }}"
