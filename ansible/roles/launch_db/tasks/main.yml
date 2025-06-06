@@ -1,0 +1,12 @@
+- name: Run PostgreSQL container from Docker Hub
+  community.docker.docker_container:
+    name: my_db
+    image: taharachid/tp-devops-simple-db
+    env:
+      POSTGRES_USER: "{{ postgres_user }}"
+      POSTGRES_PASSWORD: "{{ postgres_password }}"
+      POSTGRES_DB: "{{ postgres_db }}"
+    networks:
+      - name: my_network
+    state: started
+    restart_policy: always

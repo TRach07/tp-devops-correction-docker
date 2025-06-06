@@ -1,0 +1,14 @@
+- name: Run application container from Docker Hub
+  community.docker.docker_container:
+    name: simple-api
+    image: taharachid/tp-devops-simple-api
+    env:
+      SPRING_DATASOURCE_URL: "{{ spring_datasource_url }}"
+      SPRING_DATASOURCE_USERNAME: "{{ spring_datasource_username }}"
+      SPRING_DATASOURCE_PASSWORD: "{{ spring_datasource_password }}"
+    ports:
+      - "8080:8080"
+    networks:
+      - name: my_network
+    state: started
+    restart_policy: always

@@ -1,0 +1,9 @@
+- name: Run HTTPD container with reverse proxy config
+  community.docker.docker_container:
+    name: httpd
+    image: taharachid/tp-devops-simple-httpd
+    ports:
+      - "80:80"
+    networks:
+      - name: my_network
+    state: started
