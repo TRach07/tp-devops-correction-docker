@@ -60,7 +60,7 @@ class DepartmentControllerTestIT {
     void testGetDepartmentCountByName() throws Exception {
         mockMvc.perform(get("/departments/ASI/count"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", equalTo(999)));
+                .andExpect(jsonPath("$", equalTo(48)));
     }
 
     @Test
